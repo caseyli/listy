@@ -7,14 +7,14 @@ module Listy
         show_more = false
         collection.each_with_index do |element, index|
           if index > show_more_index && !show_more
-            html += "<div class='show-more-list' style='display:none'>" 
+            html += "<div class='listy-show-more-list' style='display:none'>" 
             show_more = true
           end
           html += "<li>" + link_to(element.try(display_method_name), element) + "</li>"
         end
         if show_more
           html += "</div>" 
-          html += link_to("Show More", "#", :class => "show-more-link button orange-button")
+          html += link_to("Show More", "#", :class => "listy-show-more-link button orange-button")
         end 
         html += "</ul>"
       else
