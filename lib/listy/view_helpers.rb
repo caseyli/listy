@@ -1,0 +1,56 @@
+module Listy
+  module ViewHelpers
+ 
+    def list_of_links(collection, display_method_name, css_class, show_more_index=5, empty_message="")
+      if collection.present?
+        html = "<ul class='" + css_class + "'>"
+        show_more = false
+        collection.each_with_index do |element, index|
+          if index > show_more_index && !show_more
+            html += "<div class='show-more-list' style='display:none'>" 
+            show_more = true
+          end
+          html += "<li>" + link_to(element.try(display_method_name), element) + "</li>"
+        end
+        if show_more
+          html += "</div>" 
+          html += link_to("Show More", "#", :class => "show-more-link button orange-button")
+        end 
+        html += "</ul>"
+      else
+        html = "There are no entries in this list."
+        html = empty_message if !empty_message.nil?
+      end
+
+      raw html
+    end
+
+    def multi_column_list_of_links(collection, display_method_name, css_class, number_of_columns)
+      html = ""
+      if collection.present?
+        number_of_entries_per_column = collection.size/number_of_columns
+        percentage_width_of_column = 100 / number_of_columns
+        Rails.logger.info(collection.size.to_s + " " + number_of_entries_per_column.to_s)
+        (0..number_of_columns-1).each do |i|
+          html += "<div style='float:left;width:" + percentage_width_of_column.to_s + "%'>"
+
+          start_index = i * number_of_entries_per_column
+          end_index = (i+1) * number_of_entries_per_column
+          end_index = collection.size if end_index > collection.size
+
+          html += list_of_links(collection[start_index..end_index], display_method_name, css_class, show_more_index=1000, "")
+
+          html += "</div>"
+        end
+
+        html += "<div style='clear:both'></div>"
+
+      else
+        html = "There are no entries in this list."
+      end
+
+      raw html
+    end
+ 
+  end
+end
