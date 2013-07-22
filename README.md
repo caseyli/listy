@@ -2,6 +2,11 @@
 
 Listy is a Gem that contains a bunch of view helpers for use in Ruby on Rails to easily create different types of lists.
 
+## Requirements
+
+Listy is only compatible with Rails 3.1 and above.
+It leverages both the Asset Pipeline and the JQuery library.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -15,6 +20,10 @@ And then execute:
 Or install it yourself as:
 
     $ gem install listy
+
+Listy also includes some Javascript assets, so be sure to add the following line to your application.js
+
+	//= require listy
 
 ## Usage
 
