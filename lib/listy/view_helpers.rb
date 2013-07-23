@@ -56,7 +56,7 @@ module Listy
           end_index = (i+1) * number_of_entries_per_column
           end_index = collection.size if end_index > collection.size
 
-          html += list_of_links(collection[start_index..end_index], display_method_name, css_class, show_more_index=1000, "")
+          html += listy_links(collection[start_index..end_index], display_method_name, options)
 
           html += "</div>"
         end
