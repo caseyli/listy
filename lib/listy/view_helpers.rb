@@ -20,7 +20,7 @@ module Listy
       
         if !spec[:children].nil?
           html += "<ul>"
-          create_listy_tree(collection.try(spec[:children]), spec[:child], html)
+          create_listy_tree(element.try(spec[:children]), spec[:child], html)
           html += "</ul>"
         end
 
