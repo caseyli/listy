@@ -17,20 +17,23 @@ module Listy
       if collection.present?
         html = "<ul class='" + options[:css_class] + "'>"
         show_more_limit_reached = false
+
+        show_more_limit = options[:show_more_limit] || 10 if options[:show_more]
+
         collection.each_with_index do |element, index|
-          
-          if index > options[:show_more_limit] && !show_more_limit_reached && options[:show_more]
+
+          if options[:show_more] && (index+1) > show_more_limit && !show_more_limit_reached
             html += "<div class='listy-show-more-list' style='display:none'>" 
             show_more_limit_reached = true
           end
           html += "<li>" + link_to(element.try(display_method_name), element) + "</li>"
         end
 
-        if show_more_limit_reached && options[:show_more]
+        if options[:show_more] && show_more_limit_reached
           html += "</div>" 
           html += link_to("Show More", "#", :class => "listy-show-more-link button orange-button")
         end 
-        
+
         html += "</ul>"
       else
         html = "There are no entries in this list."
