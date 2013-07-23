@@ -9,6 +9,15 @@ I will do my best to keep this document up to date with the versions.
 Listy is only compatible with Rails 3.1 and above.
 It leverages both the Asset Pipeline and the JQuery library.
 
+So either manually include your own version of JQuery, or ensure the bundled version is specified in your `app/assets/javascripts/application.js`
+
+```ruby
+	//= require jquery
+	//= require jquery
+```
+
+If you don't plan on using any of the Hiding/Collapsing of the lists - you don't have to include the JQuery stuff.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -27,6 +36,8 @@ Listy also includes some Javascript assets, so be sure to add the following line
 
 	//= require listy
 
+If you don't plan on using any of the Hiding/Collapsing of the lists - you don't have to include this.
+
 ## Usage
 
 There are a couple of helper methods including:
@@ -41,7 +52,7 @@ Options you can pass in include
 
 * :css_class - The class that is applied to the resulting ul list element
 * :empty_message - The message that is displayed if the collection is empty
-* :show_more - If set to true, the list will display only the first 10 elements, and hide the rest and create a "Show More" link. Be sure to have `//= require listy` in your application.js for the "Show More" link to work.
+* :show_more - If set to true, the list will display only the first 10 elements, and hide the rest and create a "Show More" link. Show more functionality requires JQuery and list.js - please read above.
 * :show_more_limit - If you want more that the first 10 elements to show when show_more is set to true, then specify that limit here.
 
 Examples
@@ -78,7 +89,8 @@ Examples
 
 	listy_tree(collection, spec, options={})
 
-This method is for creating a nested tree of unordered lists for a collection with nested collections. This is suitable for Rails models that have has_many relationships.
+This method is for creating a nested tree of unordered lists for a collection with nested collections. 
+This is suitable for Rails models that have has_many relationships. The lists will be collapsable if you click on the parent elements (requires JQuery and listy.js, please read above).
 The spec is basically instructions on how to create the nested tree. It is a nested hash where each child specifies how to create the nested list
 
 Example let's say we have the following
