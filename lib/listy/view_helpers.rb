@@ -19,9 +19,7 @@ module Listy
         html += "<div class='listy-tree-list-header'>#{element.try(spec[:display_method_name])}</div>"
       
         if !spec[:children].nil?
-          html += "<ul>"
           create_listy_tree(element.try(spec[:children]), spec[:child], html)
-          html += "</ul>"
         end
 
         html += "</li>"
