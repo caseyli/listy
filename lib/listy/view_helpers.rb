@@ -3,7 +3,7 @@ module Listy
  
     def listy_tree(collection, spec, empty_message)
       if collection.present?
-        html = create_listy_tree(collection, spec, "")
+        html = "<div class='listy-tree'>" + create_listy_tree(collection, spec, "") + "</div>"
       else
         html = "There are no entries in this tree."
         html = empty_message if !empty_message.nil?
