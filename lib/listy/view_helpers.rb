@@ -3,7 +3,7 @@ module Listy
  
     def listy_tree(collection, spec, empty_message)
       if collection.present?
-        html = "<div class='listy-tree'>" + create_listy_tree(collection, spec, "") + "</div>"
+        html = "<div class='listy-tree'>" + create_listy_tree(collection, spec, "", 0) + "</div>"
       else
         html = "There are no entries in this tree."
         html = empty_message if !empty_message.nil?
@@ -11,13 +11,13 @@ module Listy
       raw html
     end
     
-    def create_listy_tree(collection, spec, html)
-      html += "<ul>"
+    def create_listy_tree(collection, spec, html, level)
+      html += "<ul class='listy-tree-level-#{level}'>"
       
       collection.each do |element|
         html += "<li>"
         html += "<div class='listy-tree-list-header'>#{element.try(spec[:display_method_name])}</div>"
-        html += create_listy_tree(element.try(spec[:children]), spec[:child], html) if !spec[:children].nil?
+        html = create_listy_tree(element.try(spec[:children]), spec[:child], html, level+1) if !spec[:children].nil?
         html += "</li>"
       end
       
