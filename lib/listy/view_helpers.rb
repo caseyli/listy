@@ -13,7 +13,7 @@ module Listy
     
     
  
-    def listy_links(collection, display_method_name, options={})
+    def listy_links(collection, options={})
       if collection.present?
         html = "<ul class='" + options[:css_class] + "'>"
         show_more_limit_reached = false
@@ -26,7 +26,7 @@ module Listy
             html += "<div class='listy-show-more-list' style='display:none'>" 
             show_more_limit_reached = true
           end
-          display = display_method_name.nil? ? element.to_s : element.try(display_method_name)
+          display = options[:display_method_name].nil? ? element.to_s : element.try(options[:display_method_name])
           html += "<li>" + link_to(display, element) + "</li>"
         end
 
@@ -44,7 +44,7 @@ module Listy
       raw html
     end
 
-    def multi_column_listy_links(collection, display_method_name, number_of_columns, options={})
+    def multi_column_listy_links(collection, number_of_columns, options={})
       html = ""
       if collection.present?
         number_of_entries_per_column = (Float(collection.size)/Float(number_of_columns)).ceil
@@ -57,7 +57,7 @@ module Listy
           end_index = (i+1) * number_of_entries_per_column - 1
           end_index = collection.size if end_index > collection.size
 
-          html += listy_links(collection[start_index..end_index], display_method_name, options)
+          html += listy_links(collection[start_index..end_index], options)
 
           html += "</div>"
         end

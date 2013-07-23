@@ -45,15 +45,15 @@ There are a couple of helper methods including:
 
 ### listy_links
 
-	listy_links(collection, display_method_name, options={})
+	listy_links(collection, options={})
 
 This method creates a simple unordered list of links of the elements in the collection. This is suitable for Ruby on Rails models.
 
 * collection - Should be an ActiveRecord collection.
-* display_method_name - Symbol of method to be called on each record to generate what is display in the list
 
 Options you can pass in include
 
+* display_method_name - Symbol of method to be called on each record to generate what is display in the list. If you set is not specified, to_s will be called on the element to generate the display string.
 * :css_class - The class that is applied to the resulting ul list element
 * :empty_message - The message that is displayed if the collection is empty
 * :show_more - If set to true, the list will display only the first 10 elements, and hide the rest and create a "Show More" link. Show more functionality requires JQuery and list.js - please read above.
@@ -70,15 +70,16 @@ Examples
 ```
 ### multi_column_listy_links
 
-	multi_column_listy_links(collection, display_method_name, number_of_columns, options={})
+	multi_column_listy_links(collection, number_of_columns, options={})
 
 This does the same thing as listy_links but presents it in the number of columns you specify.
 
 * collection - Should be an ActiveRecord collection.
-* display_method_name - Symbol of method to be called on each record to generate what is display in the list
+* number_of_columns - The number of columns you want the list split up into.
 
 Options you can pass in include:
 
+* display_method_name - Symbol of method to be called on each record to generate what is display in the list. If you set is not specified, to_s will be called on the element to generate the display string.
 * :css_class - The class that is applied to the resulting ul list elements in each column
 * :empty_message - The message that is displayed if the collection is empty
 
