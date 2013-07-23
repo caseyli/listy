@@ -1,20 +1,20 @@
+/*********************** LISTY TREE LIST **********************************************/
 $(function(){
-	$(".listy-tree .list-header").click(listHeaderClick);
-	$(".listy-show-more-link").click(toggleMoreList);
+	$(".listy-tree .listy-tree-list-header").click(listyTreeListHeaderClick);
 });
 
-function listHeaderClick() {
+function listyTreeListHeaderClick() {
 	var list = $(this).siblings("ul");
 	toggleList(list);
 }
 
-function toggleList(list) {
-	toggleList(200);
+function toggleListyTreeList(list) {
+	toggleListyTreList(200);
 }
 
-function toggleList(list, duration) {
+function toggleListyTreeList(list, duration) {
 	
-	var header = list.siblings(".list-header");
+	var header = list.siblings(".listy-tree-list-header");
 	if(list.is(":visible")) {
 		list.slideUp(duration);
 		header.children(".icon").html("<i class='icon-angle-right'></i>");
@@ -35,6 +35,11 @@ function autoCollapseAllBut(headerName, tree) {
 		
 	});
 }
+
+/*********************** LISTY SHOW-MORE LIST ******************************************/
+$(function(){
+	$(".listy-show-more-link").click(toggleMoreList);
+});
 
 function toggleMoreList() {
 	toggleMoreList(200);
