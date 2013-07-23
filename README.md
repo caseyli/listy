@@ -27,17 +27,17 @@ Listy also includes some Javascript assets, so be sure to add the following line
 
 ## Usage
 
-There are a couple of helper method including:
+There are a couple of helper methods including:
 
-### listy_links(collection, display_method_name, css_class, show_more_index=5, empty_message="")
+	listy_links(collection, display_method_name, css_class, show_more_index=5, empty_message="")
 
 This method creates a simple unordered list of the elements in the collection.
 
-### multi_column_listy_links(collection, display_method_name, css_class, number_of_columns)
+	multi_column_listy_links(collection, display_method_name, css_class, number_of_columns)
 
 This does the same thing as listy_links but presents it in the number of columns you specify.
 
-### listy_tree(collection, spec, empty_message)
+	listy_tree(collection, spec, empty_message)
 
 This method is for creating a nested tree of unordered lists for a collection with nested collections. This is suitable for Rails models that have has_many relationships.
 
