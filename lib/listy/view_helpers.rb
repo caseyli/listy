@@ -5,8 +5,7 @@ module Listy
       if collection.present?
         html = "<div class='listy-tree'>" + create_listy_tree(collection, spec, "", 0) + "</div>"
       else
-        html = "There are no entries in this tree."
-        html = options[:empty_message] if !options[:empty_message].nil?
+        html = options[:empty_message] || "There are no entries in this list."
       end
       raw html
     end
@@ -15,7 +14,8 @@ module Listy
  
     def listy_links(collection, options={})
       if collection.present?
-        html = "<ul class='" + options[:css_class] + "'>"
+        css_class = options[:css_class] || ""
+        html = "<ul class='" + css_class + "'>"
         show_more_limit_reached = false
 
         show_more_limit = options[:show_more_limit] || 10 if options[:show_more]
@@ -37,8 +37,7 @@ module Listy
 
         html += "</ul>"
       else
-        html = "There are no entries in this list."
-        html = options[:empty_message] if !options[:empty_message].nil?
+        html = options[:empty_message] || "There are no entries in this list."
       end
 
       raw html
@@ -65,8 +64,7 @@ module Listy
         html += "<div style='clear:both'></div>"
 
       else
-        html = "There are no entries in this list."
-        html = options[:empty_message] if !options[:empty_message].nil?
+        html = options[:empty_message] || "There are no entries in this list."
       end
 
       raw html

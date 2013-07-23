@@ -64,6 +64,8 @@ Examples
 ```ruby
 	<%= listy_links BlogPost.all, :title %>
 	
+	<%= listy_links BlogPost.all, :title %>
+	
 	<%= listy_links User.all, :email, :show_more => true %>
 	
 	<%= listy_links Product.all, :part_number, :show_more => true, :show_more_limit => 100, :css_class => "products-list" %>
