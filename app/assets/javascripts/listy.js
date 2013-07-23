@@ -5,7 +5,7 @@ $(function(){
 
 function listyTreeListHeaderClick() {
 	var list = $(this).siblings("ul");
-	toggleList(list);
+	toggleListyTreeList(list);
 }
 
 function toggleListyTreeList(list) {

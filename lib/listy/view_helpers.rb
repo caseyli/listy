@@ -1,7 +1,36 @@
 module Listy
   module ViewHelpers
  
-    def list_of_links(collection, display_method_name, css_class, show_more_index=5, empty_message="")
+    def listy_tree(collection, spec, empty_message)
+      if collection.present?
+        html = create_listy_tree(collection, spec, "")
+      else
+        html = "There are no entries in this tree."
+        html = empty_message if !empty_message.nil?
+      end
+      raw html
+    end
+    
+    def create_listy_tree(collection, spec, html)
+      html += "<ul>"
+      
+      collection.each do |element|
+        html += "<li>"
+        html += "<div class='listy-tree-list-header'>#{}</div>"
+      
+        if !spec[:children].nil?
+          html += "<ul>"
+          create_listy_tree(collection.try(spec[:children]), spec[:child], html)
+          html += "</ul>"
+        end
+
+        html += "</li>"
+      end
+      
+      html += "</ul>"      
+    end
+ 
+    def listy_links(collection, display_method_name, css_class, show_more_index=5, empty_message="")
       if collection.present?
         html = "<ul class='" + css_class + "'>"
         show_more = false
@@ -25,7 +54,7 @@ module Listy
       raw html
     end
 
-    def multi_column_list_of_links(collection, display_method_name, css_class, number_of_columns)
+    def multi_column_listy_links(collection, display_method_name, css_class, number_of_columns)
       html = ""
       if collection.present?
         number_of_entries_per_column = collection.size/number_of_columns
