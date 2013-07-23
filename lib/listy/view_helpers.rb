@@ -47,7 +47,7 @@ module Listy
     def multi_column_listy_links(collection, display_method_name, number_of_columns, options={})
       html = ""
       if collection.present?
-        number_of_entries_per_column = collection.size/number_of_columns
+        number_of_entries_per_column = (Float(collection.size)/Float(number_of_columns)).ceil
         percentage_width_of_column = 100 / number_of_columns
         Rails.logger.info(collection.size.to_s + " " + number_of_entries_per_column.to_s)
         (0..number_of_columns-1).each do |i|
