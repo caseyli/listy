@@ -16,7 +16,7 @@ module Listy
       
       collection.each do |element|
         html += "<li>"
-        html += "<div class='listy-tree-list-header'>#{}</div>"
+        html += "<div class='listy-tree-list-header'>#{element.try(spec[:display_method_name])}</div>"
       
         if !spec[:children].nil?
           html += "<ul>"
