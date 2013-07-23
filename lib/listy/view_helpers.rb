@@ -1,54 +1,46 @@
 module Listy
   module ViewHelpers
  
-    def listy_tree(collection, spec, empty_message)
+    def listy_tree(collection, spec, options={})
       if collection.present?
         html = "<div class='listy-tree'>" + create_listy_tree(collection, spec, "", 0) + "</div>"
       else
         html = "There are no entries in this tree."
-        html = empty_message if !empty_message.nil?
+        html = options[:empty_message] if !options[:empty_message].nil?
       end
       raw html
     end
     
-    def create_listy_tree(collection, spec, html, level)
-      html += "<ul class='listy-tree-level-#{level}'>"
-      
-      collection.each do |element|
-        html += "<li>"
-        html += "<div class='listy-tree-list-header'>#{element.try(spec[:display_method_name])}</div>"
-        html = create_listy_tree(element.try(spec[:children]), spec[:child], html, level+1) if !spec[:children].nil?
-        html += "</li>"
-      end
-      
-      html += "</ul>"      
-    end
+    
  
-    def listy_links(collection, display_method_name, css_class, show_more_index=5, empty_message="")
+    def listy_links(collection, display_method_name, options={})
       if collection.present?
-        html = "<ul class='" + css_class + "'>"
-        show_more = false
+        html = "<ul class='" + options[:css_class] + "'>"
+        show_more_limit_reached = false
         collection.each_with_index do |element, index|
-          if index > show_more_index && !show_more
+          
+          if index > options[:show_more_limit] && !show_more_limit_reached && options[:show_more]
             html += "<div class='listy-show-more-list' style='display:none'>" 
-            show_more = true
+            show_more_limit_reached = true
           end
           html += "<li>" + link_to(element.try(display_method_name), element) + "</li>"
         end
-        if show_more
+
+        if show_more_limit_reached && options[:show_more]
           html += "</div>" 
           html += link_to("Show More", "#", :class => "listy-show-more-link button orange-button")
         end 
+        
         html += "</ul>"
       else
         html = "There are no entries in this list."
-        html = empty_message if !empty_message.nil?
+        html = options[:empty_message] if !options[:empty_message].nil?
       end
 
       raw html
     end
 
-    def multi_column_listy_links(collection, display_method_name, css_class, number_of_columns)
+    def multi_column_listy_links(collection, display_method_name, number_of_columns, options={})
       html = ""
       if collection.present?
         number_of_entries_per_column = collection.size/number_of_columns
@@ -70,10 +62,25 @@ module Listy
 
       else
         html = "There are no entries in this list."
+        html = options[:empty_message] if !options[:empty_message].nil?
       end
 
       raw html
     end
+    
+    private
+      def create_listy_tree(collection, spec, html, level)
+        html += "<ul class='listy-tree-level-#{level}'>"
+
+        collection.each do |element|
+          html += "<li>"
+          html += "<div class='listy-tree-list-header'>#{element.try(spec[:display_method_name])}</div>"
+          html = create_listy_tree(element.try(spec[:children]), spec[:child], html, level+1) if !spec[:children].nil?
+          html += "</li>"
+        end
+
+        html += "</ul>"      
+      end
  
   end
 end
