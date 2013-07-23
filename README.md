@@ -53,7 +53,7 @@ This method creates a simple unordered list of links of the elements in the coll
 
 Options you can pass in include
 
-* display_method - Symbol of method to be called on each record to generate what is displayed in the list. If you set is not specified, to_s will be called on the element to generate the display string.
+* :display_method - Symbol of method to be called on each record to generate what is displayed in the list. If you set is not specified, to_s will be called on the element to generate the display string.
 * :css_class - The class that is applied to the resulting ul list element
 * :empty_message - The message that is displayed if the collection is empty
 * :show_more - If set to true, the list will display only the first 10 elements, and hide the rest and create a "Show More" link. Show more functionality requires JQuery and list.js - please read above.
@@ -70,6 +70,8 @@ Options you can pass in include
 	
 	<%= listy_links Product.all, :display_method => :part_number, :show_more => true, :show_more_limit => 100, :css_class => "products-list" %>
 ```
+
+
 ### multi_column_listy_links
 
 	multi_column_listy_links(collection, number_of_columns, options={})
@@ -81,7 +83,7 @@ This does the same thing as listy_links but presents it in the number of columns
 
 Options you can pass in include:
 
-* display_method - Symbol of method to be called on each record to generate what is displayed in the list. If you set is not specified, to_s will be called on the element to generate the display string.
+* :display_method - Symbol of method to be called on each record to generate what is displayed in the list. If you set is not specified, to_s will be called on the element to generate the display string.
 * :css_class - The class that is applied to the resulting ul list elements in each column
 * :empty_message - The message that is displayed if the collection is empty
 
@@ -94,6 +96,7 @@ Options you can pass in include:
 	
 	<%= multi_column_listy_links Product.all, 4, :display_method => :part_number, :css_class => "products-list", :empty_message => "There are no products" %>
 ```
+
 
 ### listy_tree
 
@@ -109,7 +112,7 @@ The spec is basically instructions on how to create the nested tree. It is a nes
 
 The spec is a nested hash that contains the following elements:
 
-* display_method - Symbol of method to be called on each record to generate what is displayed in the list. If you set is not specified, to_s will be called on the element to generate the display string.
+* :display_method - Symbol of method to be called on each record to generate what is displayed in the list. If you set is not specified, to_s will be called on the element to generate the display string.
 * :children - The name of the method (typically the has_many relationship) to call to get the nested collection (leave unspecified or nil if this is the leaf node)
 * :child - The spec for the elements of the children (leave unspecified or nil if this is the leaf node)
 
