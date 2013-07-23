@@ -26,7 +26,8 @@ module Listy
             html += "<div class='listy-show-more-list' style='display:none'>" 
             show_more_limit_reached = true
           end
-          html += "<li>" + link_to(element.try(display_method_name), element) + "</li>"
+          display = display_method_name.nil? ? element.to_s : element.try(display_method_name)
+          html += "<li>" + link_to(display, element) + "</li>"
         end
 
         if options[:show_more] && show_more_limit_reached

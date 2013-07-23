@@ -47,7 +47,10 @@ There are a couple of helper methods including:
 
 	listy_links(collection, display_method_name, options={})
 
-This method creates a simple unordered list of the elements in the collection. This is suitable for Ruby on Rails models.
+This method creates a simple unordered list of links of the elements in the collection. This is suitable for Ruby on Rails models.
+
+* collection - Should be an ActiveRecord collection.
+* display_method_name - Symbol of method to be called on each record to generate what is display in the list
 
 Options you can pass in include
 
@@ -70,6 +73,9 @@ Examples
 	multi_column_listy_links(collection, display_method_name, number_of_columns, options={})
 
 This does the same thing as listy_links but presents it in the number of columns you specify.
+
+* collection - Should be an ActiveRecord collection.
+* display_method_name - Symbol of method to be called on each record to generate what is display in the list
 
 Options you can pass in include:
 
