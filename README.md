@@ -13,7 +13,7 @@ So either manually include your own version of JQuery, or ensure the bundled ver
 
 ```ruby
 	//= require jquery
-	//= require jquery
+	//= require jquery_ujs_
 ```
 
 If you don't plan on using any of the Hiding/Collapsing of the lists - you don't have to include the JQuery stuff.
