@@ -53,7 +53,7 @@ This method creates a simple unordered list of links of the elements in the coll
 
 Options you can pass in include
 
-* display_method_name - Symbol of method to be called on each record to generate what is display in the list. If you set is not specified, to_s will be called on the element to generate the display string.
+* display_method - Symbol of method to be called on each record to generate what is display in the list. If you set is not specified, to_s will be called on the element to generate the display string.
 * :css_class - The class that is applied to the resulting ul list element
 * :empty_message - The message that is displayed if the collection is empty
 * :show_more - If set to true, the list will display only the first 10 elements, and hide the rest and create a "Show More" link. Show more functionality requires JQuery and list.js - please read above.
@@ -62,13 +62,13 @@ Options you can pass in include
 Examples
 
 ```ruby
-	<%= listy_links BlogPost.all, :title %>
+	<%= listy_links BlogPost.all %>  <!-- probably not that useful -->
 	
-	<%= listy_links BlogPost.all, :title %>
+	<%= listy_links BlogPost.all, :display_method => :title %>
 	
-	<%= listy_links User.all, :email, :show_more => true %>
+	<%= listy_links User.all, :display_method => :email, :show_more => true %>
 	
-	<%= listy_links Product.all, :part_number, :show_more => true, :show_more_limit => 100, :css_class => "products-list" %>
+	<%= listy_links Product.all, :display_method => :part_number, :show_more => true, :show_more_limit => 100, :css_class => "products-list" %>
 ```
 ### multi_column_listy_links
 
@@ -81,18 +81,18 @@ This does the same thing as listy_links but presents it in the number of columns
 
 Options you can pass in include:
 
-* display_method_name - Symbol of method to be called on each record to generate what is display in the list. If you set is not specified, to_s will be called on the element to generate the display string.
+* display_method - Symbol of method to be called on each record to generate what is display in the list. If you set is not specified, to_s will be called on the element to generate the display string.
 * :css_class - The class that is applied to the resulting ul list elements in each column
 * :empty_message - The message that is displayed if the collection is empty
 
 Examples
 
 ```ruby
-	<%= listy_links BlogPost.all, :title %>
+	<%= multi_column_listy_links BlogPost.all, 3, :display_method => :title %>
 	
-	<%= listy_links User.all, :email, :show_more => true %>
+	<%= multi_column_listy_links User.all, 2, :display_method => :email %>
 	
-	<%= listy_links Product.all, :part_number, :show_more => true, :show_more_limit => 100, :css_class => "products-list" %>
+	<%= multi_column_listy_links Product.all, 4, :display_method => :part_number, :css_class => "products-list", :empty_message => "There are no products" %>
 ```
 
 ### listy_tree
@@ -112,11 +112,11 @@ Examples:
 
 ```ruby
 	listy_tree(Country.all, 
-				{ :display_method_name => :name, 
+				{ :display_method => :name, 
 				  :children => :states, 
-				  :child => { :display_method_name => :name, 
+				  :child => { :display_method => :name, 
 							  :children => :cities, 
-							  :child => { :display_method_name => :name }
+							  :child => { :display_method => :name }
 							}
 				 })
 ```

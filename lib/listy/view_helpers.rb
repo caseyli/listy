@@ -26,7 +26,7 @@ module Listy
             html += "<div class='listy-show-more-list' style='display:none'>" 
             show_more_limit_reached = true
           end
-          display = options[:display_method_name].nil? ? element.to_s : element.try(options[:display_method_name])
+          display = options[:display_method].nil? ? element.to_s : element.try(options[:display_method])
           html += "<li>" + link_to(display, element) + "</li>"
         end
 
@@ -76,7 +76,7 @@ module Listy
 
         collection.each do |element|
           html += "<li>"
-          html += "<div class='listy-tree-list-header'>#{element.try(spec[:display_method_name])}</div>"
+          html += "<div class='listy-tree-list-header'>#{element.try(spec[:display_method])}</div>"
           html = create_listy_tree(element.try(spec[:children]), spec[:child], html, level+1) if !spec[:children].nil?
           html += "</li>"
         end
