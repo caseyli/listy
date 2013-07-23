@@ -29,13 +29,29 @@ Listy also includes some Javascript assets, so be sure to add the following line
 
 There are a couple of helper method including:
 
-### list_of_links(collection, display_method_name, css_class, show_more_index=5, empty_message="")
+### listy_links(collection, display_method_name, css_class, show_more_index=5, empty_message="")
 
 This method creates a simple unordered list of the elements in the collection.
 
-### multi_column_list_of_links(collection, display_method_name, css_class, number_of_columns)
+### multi_column_listy_links(collection, display_method_name, css_class, number_of_columns)
 
-This does the same thing as list_of_links but presents it in the number of columns you specify.
+This does the same thing as listy_links but presents it in the number of columns you specify.
+
+### listy_tree(collection, spec, empty_message)
+
+This method is for creating a nested tree of unordered lists for a collection with nested collections. This is suitable for Rails models that have has_many relationships.
+
+Example let's say we have the following
+
+* Country which has_many States
+* State which has_many Cities
+
+Typical usage would be:
+
+	listy_tree(Country.all, {:display_method_name => :name, :children => :states, :child => { :display_method_name => :name, :children => :cities, :child => {:display_method_name => :name, :children => nil, :child => nil}}}, "")
+
+Be sure that the inner most child of the spec has :children => nil. This will stop the nesting.
+
 
 ## Contributing
 
