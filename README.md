@@ -53,13 +53,13 @@ This method creates a simple unordered list of links of the elements in the coll
 
 Options you can pass in include
 
-* display_method - Symbol of method to be called on each record to generate what is display in the list. If you set is not specified, to_s will be called on the element to generate the display string.
+* display_method - Symbol of method to be called on each record to generate what is displayed in the list. If you set is not specified, to_s will be called on the element to generate the display string.
 * :css_class - The class that is applied to the resulting ul list element
 * :empty_message - The message that is displayed if the collection is empty
 * :show_more - If set to true, the list will display only the first 10 elements, and hide the rest and create a "Show More" link. Show more functionality requires JQuery and list.js - please read above.
 * :show_more_limit - If you want more that the first 10 elements to show when show_more is set to true, then specify that limit here.
 
-Examples
+#### Example Usage:
 
 ```ruby
 	<%= listy_links BlogPost.all %>  <!-- probably not that useful -->
@@ -81,11 +81,11 @@ This does the same thing as listy_links but presents it in the number of columns
 
 Options you can pass in include:
 
-* display_method - Symbol of method to be called on each record to generate what is display in the list. If you set is not specified, to_s will be called on the element to generate the display string.
+* display_method - Symbol of method to be called on each record to generate what is displayed in the list. If you set is not specified, to_s will be called on the element to generate the display string.
 * :css_class - The class that is applied to the resulting ul list elements in each column
 * :empty_message - The message that is displayed if the collection is empty
 
-Examples
+#### Example Usage:
 
 ```ruby
 	<%= multi_column_listy_links BlogPost.all, 3, :display_method => :title %>
@@ -101,14 +101,39 @@ Examples
 
 This method is for creating a nested tree of unordered lists for a collection with nested collections. 
 This is suitable for Rails models that have has_many relationships. The lists will be collapsable if you click on the parent elements (requires JQuery and listy.js, please read above).
+
 The spec is basically instructions on how to create the nested tree. It is a nested hash where each child specifies how to create the nested list
 
-Example let's say we have the following
+
+#### Spec Explanation
+
+The spec is a nested hash that contains the following elements:
+
+* display_method - Symbol of method to be called on each record to generate what is displayed in the list. If you set is not specified, to_s will be called on the element to generate the display string.
+* :children - The name of the method (typically the has_many relationship) to call to get the nested collection (leave unspecified or nil if this is the leaf node)
+* :child - The spec for the elements of the children (leave unspecified or nil if this is the leaf node)
+
+Here's a sample spec
+
+Let's say we have the following
 
 * Country which has_many States
 * State which has_many Cities
 
-Examples:
+
+```ruby
+	spec = { :display_method => :name, 
+	  			:children => :states, 
+	  			:child => { :display_method => :name, 
+				  			:children => :cities, 
+				  			:child => { :display_method => :name }
+						   }
+	 		}
+```
+
+
+
+#### Example Usage:
 
 ```ruby
 	listy_tree(Country.all, 
