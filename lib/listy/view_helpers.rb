@@ -54,7 +54,7 @@ module Listy
           html += "<div style='float:left;width:" + percentage_width_of_column.to_s + "%'>"
 
           start_index = i * number_of_entries_per_column
-          end_index = (i+1) * number_of_entries_per_column
+          end_index = (i+1) * number_of_entries_per_column - 1
           end_index = collection.size if end_index > collection.size
 
           html += listy_links(collection[start_index..end_index], display_method_name, options)
