@@ -1,6 +1,7 @@
 # Listy
 
 Listy is a Gem that contains a bunch of view helpers for use in Ruby on Rails to easily create different types of lists.
+
 I apologize for all the updates happening in 0.0.X. This started out as a test gem project with very bad code, and I'm refactoring and updating the code pretty frequently.
 I will do my best to keep this document up to date with the versions.
 
@@ -13,7 +14,7 @@ So either manually include your own version of JQuery, or ensure the bundled ver
 
 ```ruby
 	//= require jquery
-	//= require jquery_ujs_
+	//= require jquery_ujs
 ```
 
 If you don't plan on using any of the Hiding/Collapsing of the lists - you don't have to include the JQuery stuff.
