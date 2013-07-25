@@ -105,7 +105,15 @@ Options you can pass in include:
 This method is for creating a nested tree of unordered lists for a collection with nested collections. 
 This is suitable for Rails models that have has_many relationships. The lists will be collapsable if you click on the parent elements (requires JQuery and listy.js, please read above).
 
-The spec is basically instructions on how to create the nested tree. It is a nested hash where each child specifies how to create the nested list
+The spec is basically instructions on how to create the nested tree. It is a nested hash where each child specifies how to create the nested list.
+
+* collection - Collection, usually nested, of elements, usually ActiveRecord's with has_many relationships
+* spec - explained below
+
+Options you can pass in include:
+
+* :css_class - The class that is applied to the resulting div tag that surrounds the nested lists
+* :empty_message - The message that is displayed if the collection is empty
 
 
 #### Spec Explanation
