@@ -6,10 +6,11 @@ $(function(){
 function listyTreeListHeaderClick() {
 	var list = $(this).siblings("ul");
 	toggleListyTreeList(list);
+	return false;
 }
 
 function toggleListyTreeList(list) {
-	toggleListyTreList(200);
+	toggleListyTreeList(list, 200);
 }
 
 function toggleListyTreeList(list, duration) {
@@ -17,20 +18,20 @@ function toggleListyTreeList(list, duration) {
 	var header = list.siblings(".listy-tree-list-header");
 	if(list.is(":visible")) {
 		list.slideUp(duration);
-		header.children(".icon").html("<i class='icon-angle-right'></i>");
+		// header.children(".icon").html("<i class='icon-angle-right'></i>");
 	}
 	else {
 		list.slideDown(duration);
-		header.children(".icon").html("<i class='icon-angle-down'></i>");
+		// header.children(".icon").html("<i class='icon-angle-down'></i>");
 	}
 }
 
 function autoCollapseAllListyBranchesBut(headerName, tree) {
 	jQuery.each(tree.children("li"), function(){
 		
-		var listHeaderText = $(this).children(".list-header").children(".list-header-text").html();
+		var listHeaderText = $(this).children(".listy-tree-list-header").html();
 		if(headerName != listHeaderText) {
-			toggleList($(this).children(".list-header").siblings("ul"), 0);
+			toggleList($(this).children(".listy-tree-list-header").siblings("ul"), 0);
 		}
 		
 	});
