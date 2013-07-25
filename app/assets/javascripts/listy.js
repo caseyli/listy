@@ -25,7 +25,7 @@ function toggleListyTreeList(list, duration) {
 	}
 }
 
-function autoCollapseAllBut(headerName, tree) {
+function autoCollapseAllListyBranchesBut(headerName, tree) {
 	jQuery.each(tree.children("li"), function(){
 		
 		var listHeaderText = $(this).children(".list-header").children(".list-header-text").html();
@@ -38,15 +38,15 @@ function autoCollapseAllBut(headerName, tree) {
 
 /*********************** LISTY SHOW-MORE LIST ******************************************/
 $(function(){
-	$(".listy-show-more-link").click(toggleMoreList);
+	$(".listy-show-more-link").click(toggleListyShowMoreList);
 });
 
-function toggleMoreList() {
+function toggleListyShowMoreList() {
 	toggleMoreList(200);
 	return false;
 }
 
-function toggleMoreList(duration) {
+function toggleListyShowMoreList(duration) {
 	var showMoreList = $(this).siblings(".listy-show-more-list");
 	if(showMoreList.is(":visible")) {
 		showMoreList.slideUp(duration);
