@@ -39,7 +39,7 @@ Listy also includes some Javascript assets, so be sure to add the following line
 
 If you don't plan on using any of the Hiding/Collapsing of the lists - you don't have to include this.
 
-## Usage
+## Rails Helpers Usage
 
 There are a couple of helper methods including:
 
@@ -150,6 +150,25 @@ Let's say we have the following
 ```
 
 Be sure that the inner most child of the spec has :children => nil (or just leave it undefined). This will stop the nesting.
+
+## JQuery based Javascript Functions
+
+Aside from the javascript functions that are used by the generated elements (like the Show More button), there are some javascript functions that might be useful to users described below.
+
+### autoCollapseAllListyBranchesBut
+
+	autoCollapseAllListyBranchesBut(headerName, tree)
+	
+This method is handy to collapse all branches of a listy_tree with the exception of a branch that has a header that matches the passed in headerName.
+
+* headerName - The text to match. If a list in the listy_tree has a header that matches this value, it will be left alone. All other lists will be collapsed.
+* tree - The listy tree element. If using JQuery, you can pass in something like $(".listy-tree listy-tree-level-1")
+
+#### Example Usage:
+
+```javascript
+	autoCollapseAllListyBranchesBut("Products", $(".listy-tree listy-tree-level-1"));
+```
 
 
 ## Contributing
