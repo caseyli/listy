@@ -78,8 +78,14 @@ module Listy
         collection.each do |element|
           html += "<li>"
           display = spec[:display_method].nil? ? element.to_s : element.try(spec[:display_method])
-          html += "<div class='listy-tree-list-header'>#{display}</div>"
-          html = create_listy_tree(element.try(spec[:children]), spec[:child], html, level+1) if !spec[:children].nil?
+          
+          if !spec[:children].nil?
+            html += "<div class='listy-tree-list-header listy-list-header-expanded'>#{display}</div>"
+            html = create_listy_tree(element.try(spec[:children]), spec[:child], html, level+1) 
+          else
+            html += "<div class='listy-tree-leaf'>#{display}</div>"
+          end
+          
           html += "</li>"
         end
 

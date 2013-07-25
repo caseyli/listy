@@ -115,6 +115,16 @@ Options you can pass in include:
 * :css_class - The class that is applied to the resulting div tag that surrounds the nested lists
 * :empty_message - The message that is displayed if the collection is empty
 
+#### CSS Classes
+
+Each nested ul element ends up being assigned a class. The upper most ul has a css class of `listy-tree-level-0` and the next one has a css class of `listy-tree-level-1` and so on.
+
+Also, with the collapsing and expanding of the list, the following classes also are applied and taken away to the headers of the lists `listy-list-header-expanded` and `listy-list-header-collapsed`. This way you can style what the header looks like when you expand or collapse the list.
+
+Lastly, the leafs of a listy-tree have the css class `listy-tree-leaf`.
+
+Basically this are all used for custom styling.
+
 
 #### Spec Explanation
 

@@ -18,11 +18,13 @@ function toggleListyTreeList(list, duration) {
 	var header = list.siblings(".listy-tree-list-header");
 	if(list.is(":visible")) {
 		list.slideUp(duration);
-		// header.children(".icon").html("<i class='icon-angle-right'></i>");
+		header.removeClass("listy-list-header-expanded");
+		header.addClass("listy-list-header-collapsed");
 	}
 	else {
 		list.slideDown(duration);
-		// header.children(".icon").html("<i class='icon-angle-down'></i>");
+		header.addClass("listy-list-header-expanded");
+		header.removeClass("listy-list-header-collapsed");
 	}
 }
 
