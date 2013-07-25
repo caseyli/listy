@@ -31,7 +31,7 @@ function autoCollapseAllListyBranchesBut(headerName, tree) {
 		
 		var listHeaderText = $(this).children(".listy-tree-list-header").html();
 		if(headerName != listHeaderText) {
-			toggleList($(this).children(".listy-tree-list-header").siblings("ul"), 0);
+			toggleListyTreeList($(this).children(".listy-tree-list-header").siblings("ul"), 0);
 		}
 		
 	});
