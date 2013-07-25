@@ -2,8 +2,9 @@ module Listy
   module ViewHelpers
  
     def listy_tree(collection, spec, options={})
+      css_class = options[:css_class] || ""
       if collection.present?
-        html = "<div class='listy-tree'>" + create_listy_tree(collection, spec, "", 0) + "</div>"
+        html = "<div class='listy-tree " + css_class + "'>" + create_listy_tree(collection, spec, "", 0) + "</div>"
       else
         html = options[:empty_message] || "There are no entries in this list."
       end
